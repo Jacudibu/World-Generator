@@ -49,9 +49,9 @@ namespace WorldGeneration
 
 		private static void DiamondStep()
 		{
-			for (int x = _distance; x < _size; x += _distance * 2)
+			for (int y = _distance; y < _size; y += _distance * 2)
 			{
-				for (int y = _distance; y < _size; y += _distance * 2)
+				for (int x = _distance; x < _size; x += _distance * 2)
 				{
 					PerformDiamondStepAt(x, y);
 				}
@@ -71,17 +71,17 @@ namespace WorldGeneration
 
 		private static void SquareStep()
 		{
-			for (int x = 0; x < _size; x += _distance * 2)
+			for (int y = _distance; y < _size; y += _distance * 2)
 			{
-				for (int y = _distance; y < _size; y += _distance * 2)
+				for (int x = 0; x < _size; x += _distance * 2)
 				{
 					PerformSquareStep(x, y);
 				}
 			}
 			
-			for (int x =_distance; x < _size; x += _distance * 2)
+			for (int y = 0; y < _size; y += _distance * 2)
 			{
-				for (int y = 0; y < _size; y += _distance * 2)
+				for (int x =_distance; x < _size; x += _distance * 2)
 				{
 					PerformSquareStep(x, y);
 				}
