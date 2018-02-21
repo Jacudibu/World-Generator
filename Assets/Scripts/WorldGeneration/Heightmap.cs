@@ -98,16 +98,16 @@ namespace WorldGeneration
             float sum = 0;
             float count = 0;
 
-            for (int someY = y - 1; someY < y + 1; someY++)
+            for (int ySurroundings = y - 1; ySurroundings <= y + 1; ySurroundings++)
             {
-                for (int someX = x - 1; someX < x + 1; someX++)
+                for (int xSurroundings = x - 1; xSurroundings <= x + 1; xSurroundings++)
                 {
-                    if (!IsWithinBounds(someX, someY))
+                    if (!IsWithinBounds(xSurroundings, ySurroundings))
                     {
                         continue;
                     }
 
-                    sum += GetAt(someX, someY);
+                    sum += GetAt(xSurroundings, ySurroundings);
                     count++;
                 }
             }
@@ -118,7 +118,7 @@ namespace WorldGeneration
 
         private bool IsWithinBounds(int x, int y)
         {
-            return x >= 0 && x <= Width && y >= 0 && y <= Height;
+            return x >= 0 && x < Width && y >= 0 && y < Height;
         }
     }
 }

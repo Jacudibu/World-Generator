@@ -11,9 +11,11 @@ public class Visualize2D : MonoBehaviour
     private Heightmap heightmap;
     private Texture2D texture;
 
+    public int size = 128;
+
     public void GenerateHeightmap_DiamondSquare()
     {
-        heightmap = DiamondSquare.Generate(1024);
+        heightmap = DiamondSquare.Generate(size);
         ApplyTexture();
     }
 
