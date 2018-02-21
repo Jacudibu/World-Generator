@@ -59,25 +59,7 @@ namespace WorldGeneration
 
             IsNormalized = true;
         }
-        
-        public Texture2D ToTexture2D()
-        {
-            var texture = new Texture2D(Width, Height, TextureFormat.ARGB32, false);
 
-            for (int y = 0; y < Height; y++)
-            {
-                for (int x = 0; x < Width; x++)
-                {
-                    float value = GetAt(x, y);
-                    texture.SetPixel(x, y, new Color(value, value, value));;
-                }
-            }
-
-            texture.filterMode = FilterMode.Point;
-            texture.Apply();
-            
-            return texture;
-        }
 
         public void Smooth()
         {

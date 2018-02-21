@@ -33,7 +33,7 @@ public class Visualize2D : MonoBehaviour
     
     private void ApplyTexture()
     {
-        texture = heightmap.ToTexture2D();
+        texture = HeightmapConverter.ToTexture2D(heightmap);
         var rect = new Rect(0, 0, texture.width, texture.height);
         image.sprite = Sprite.Create(texture, rect, Vector2.one * 0.5f);
         image.SetNativeSize();
