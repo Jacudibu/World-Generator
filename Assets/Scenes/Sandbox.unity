@@ -275,6 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 384993978}
+  size: 1024
 --- !u!1 &736004041
 GameObject:
   m_ObjectHideFlags: 0
