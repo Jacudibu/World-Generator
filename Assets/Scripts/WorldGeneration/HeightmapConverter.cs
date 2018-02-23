@@ -5,7 +5,7 @@ namespace WorldGeneration
     public static class HeightmapConverter
     {
         private const float MaxHeight = 50f;
-        private const float DistanceBetweenVertices = 0.1f;
+        private const float DistanceBetweenVertices = 1f;
         
         public static Texture2D ToTexture2D(Heightmap heightmap)
         {
@@ -28,12 +28,11 @@ namespace WorldGeneration
         
         public static Mesh ToMesh(Heightmap heightmap)
         {
-            Mesh mesh = new Mesh();
+            var mesh = new Mesh();
 
             mesh.vertices = GenerateVertices(heightmap);
+            mesh.triangles = GenerateTriangles(heightmap);
             Vector3[] uvs;
-            Vector3[] tris;
-
             
             return mesh;
         }
