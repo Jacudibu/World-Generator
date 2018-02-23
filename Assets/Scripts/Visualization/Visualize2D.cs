@@ -14,6 +14,7 @@ public class Visualize2D : MonoBehaviour
     public int size = 128;
 
     public Mesh mesh;
+    public MeshFilter debugMeshFilter;
 
     public void GenerateHeightmap_DiamondSquare()
     {
@@ -36,6 +37,7 @@ public class Visualize2D : MonoBehaviour
     public void GenerateMesh()
     {
         mesh = HeightmapConverter.ToMesh(heightmap);
+        debugMeshFilter.mesh = mesh;
     }
     
     private void ApplyTexture()

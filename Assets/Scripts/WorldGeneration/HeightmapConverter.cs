@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Experimental.UIElements;
 
 namespace WorldGeneration
 {
@@ -47,7 +48,7 @@ namespace WorldGeneration
                 for (int x = 0; x < heightmap.Width; x++)
                 {
                     float value = heightmap.GetAt(x, y);
-                    var vertice = new Vector3(x * DistanceBetweenVertices, 
+                    var vertice = new Vector3(x * DistanceBetweenVertices,
                                               y * DistanceBetweenVertices,
                                               heightmap.GetAt(x, y) * MaxHeight);
 
@@ -61,10 +62,24 @@ namespace WorldGeneration
 
         private static int[] GenerateTriangles(Heightmap heightmap)
         {
-            int[] tris = new int[425];
-            
-            
-            return tris;
+            var triangles = new int[(heightmap.Width - 1) * (heightmap.Height - 1) * 2 * 3];
+
+            int i = 0;
+            for (int y = 0; y < heightmap.Height - 1; y++)
+            {
+                for (int x = 0; x < heightmap.Width - 1; x++)
+                {
+                    triangles[i++] = x + y * heightmap.Width;
+                    triangles[i++] = x + y * heightmap.Width + 1;
+                    triangles[i++] = x + y * heightmap.Width + heightmap.Width + 1;
+
+                    triangles[i++] = x + y * heightmap.Width;
+                    triangles[i++] = x + y * heightmap.Width + heightmap.Width + 1;
+                    triangles[i++] = x + y * heightmap.Width + heightmap.Width;
+                }
+            }
+
+            return triangles;
         }
     }
 }
