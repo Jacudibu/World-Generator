@@ -33,7 +33,7 @@ namespace WorldGeneration
 
             mesh.vertices = GenerateVertices(heightmap);
             mesh.triangles = GenerateTriangles(heightmap);
-            Vector3[] uvs;
+            mesh.RecalculateNormals();
             
             return mesh;
         }
@@ -49,8 +49,8 @@ namespace WorldGeneration
                 {
                     float value = heightmap.GetAt(x, y);
                     var vertice = new Vector3(x * DistanceBetweenVertices,
-                                              y * DistanceBetweenVertices,
-                                              heightmap.GetAt(x, y) * MaxHeight);
+                                              heightmap.GetAt(x, y) * MaxHeight,
+                                              y * DistanceBetweenVertices);
 
                     vertices[i] = vertice;
                     i++;
