@@ -33,6 +33,7 @@ namespace WorldGeneration
 
             mesh.vertices = GenerateVertices(heightmap);
             mesh.triangles = GenerateTriangles(heightmap);
+            mesh.uv = GenerateUVs(heightmap);
             mesh.RecalculateNormals();
             
             return mesh;
@@ -52,8 +53,7 @@ namespace WorldGeneration
                                               heightmap.GetAt(x, y) * MaxHeight,
                                               y * DistanceBetweenVertices);
 
-                    vertices[i] = vertice;
-                    i++;
+                    vertices[i++] = vertice;
                 }
             }
 
@@ -70,16 +70,33 @@ namespace WorldGeneration
                 for (int x = 0; x < heightmap.Width - 1; x++)
                 {
                     triangles[i++] = x + y * heightmap.Width;
-                    triangles[i++] = x + y * heightmap.Width + 1;
                     triangles[i++] = x + y * heightmap.Width + heightmap.Width + 1;
+                    triangles[i++] = x + y * heightmap.Width + 1;
 
                     triangles[i++] = x + y * heightmap.Width;
-                    triangles[i++] = x + y * heightmap.Width + heightmap.Width + 1;
                     triangles[i++] = x + y * heightmap.Width + heightmap.Width;
+                    triangles[i++] = x + y * heightmap.Width + heightmap.Width + 1;
                 }
             }
 
             return triangles;
+        }
+
+        private static Vector2[] GenerateUVs(Heightmap heightmap)
+        {
+            var uvs = new Vector2[heightmap.Values.Length];
+
+            int i = 0;
+            for (int y = 0; y < heightmap.Height; y++)
+            {
+                for (int x = 0; x < heightmap.Width; x++)
+                {
+                    var uv = new Vector2((float) x / heightmap.Width, (float) y / heightmap.Width);
+                    uvs[i++] = uv;
+                }
+            }
+
+            return uvs;
         }
     }
 }
