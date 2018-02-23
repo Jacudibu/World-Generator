@@ -17,7 +17,7 @@ namespace WorldGeneration
                 for (int x = 0; x < heightmap.Width; x++)
                 {
                     float value = heightmap.GetAt(x, y);
-                    texture.SetPixel(x, y, new Color(value, value, value));;
+                    texture.SetPixel(x, y, new Color(value, value, value));
                 }
             }
 
@@ -29,11 +29,13 @@ namespace WorldGeneration
         
         public static Mesh ToMesh(Heightmap heightmap)
         {
-            var mesh = new Mesh();
+            var mesh = new Mesh
+                       {
+                           vertices = GenerateVertices(heightmap),
+                           triangles = GenerateTriangles(heightmap),
+                           uv = GenerateUVs(heightmap)
+                       };
 
-            mesh.vertices = GenerateVertices(heightmap);
-            mesh.triangles = GenerateTriangles(heightmap);
-            mesh.uv = GenerateUVs(heightmap);
             mesh.RecalculateNormals();
             
             return mesh;
@@ -48,7 +50,6 @@ namespace WorldGeneration
             {
                 for (int x = 0; x < heightmap.Width; x++)
                 {
-                    float value = heightmap.GetAt(x, y);
                     var vertice = new Vector3(x * DistanceBetweenVertices,
                                               heightmap.GetAt(x, y) * MaxHeight,
                                               y * DistanceBetweenVertices);
