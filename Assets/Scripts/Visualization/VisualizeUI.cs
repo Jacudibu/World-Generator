@@ -21,18 +21,21 @@ namespace Visualization
         {
             heightmap = DiamondSquare.Generate(Size);
             ApplyTexture();
+            GenerateMesh();
         }
 
         public void SmoothHeightmap()
         {
             heightmap.Smooth();
             ApplyTexture();
+            GenerateMesh();
         }
 
         public void NormalizeHeightmap()
         {
             heightmap.Normalize();
             ApplyTexture();
+            GenerateMesh();
         }
 
         public void GenerateMesh()
