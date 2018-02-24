@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using WorldGeneration;
 
-namespace Visualization
+namespace UserInteraction
 {
     public class VisualizeUI : MonoBehaviour
     {
