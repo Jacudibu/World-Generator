@@ -62,5 +62,20 @@ namespace WorldGeneration.Tests
 			Assert.AreEqual(2f / 6f, map.GetAt(0, 1), "Error at 0/1");
 			Assert.AreEqual(2f / 9f, map.GetAt(1, 1), "Error at 1/1");
 		}
+
+		[Test]
+		public void TestSmoothWithWeighting()
+		{
+			Heightmap map = new Heightmap(4, 4);
+			map.SetAt(0, 0, 0);
+			map.SetAt(1, 0, 1);
+			map.SetAt(0, 1, 1);
+			map.Smooth(2);
+
+			Assert.AreEqual(2f / 5f, map.GetAt(0, 0), "Error at 0/0");
+			Assert.AreEqual(3f / 7f, map.GetAt(1, 0), "Error at 1/0");
+			Assert.AreEqual(3f / 7f, map.GetAt(0, 1), "Error at 0/1");
+			Assert.AreEqual(2f / 10f, map.GetAt(1, 1), "Error at 1/1");
+		}
 	}
 }

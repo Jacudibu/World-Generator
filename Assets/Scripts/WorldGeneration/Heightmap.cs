@@ -61,21 +61,21 @@ namespace WorldGeneration
         }
 
 
-        public void Smooth()
+        public void Smooth(int weighting = 1)
         {
             Heightmap smoothedMap = new Heightmap(Width, Height);
             for (int y = 0; y < Height; y++)
             {
                 for (int x = 0; x < Width; x++)
                 {
-                    SmoothAt(smoothedMap, x, y);
+                    SmoothAt(smoothedMap, x, y, weighting);
                 }
             }
 
             Values = smoothedMap.Values;
         }
 
-        private void SmoothAt(Heightmap smoothedMap, int x, int y)
+        private void SmoothAt(Heightmap smoothedMap, int x, int y, int weighting)
         {
             float sum = 0;
             float count = 0;
@@ -94,6 +94,9 @@ namespace WorldGeneration
                 }
             }
 
+            sum += (weighting - 1) * GetAt(x, y);
+            count += weighting - 1;
+            
             float smoothedValue = sum / count;
             smoothedMap.SetAt(x, y, smoothedValue);            
         }
