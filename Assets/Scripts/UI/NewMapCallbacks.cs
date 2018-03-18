@@ -7,10 +7,7 @@ using WorldGeneration.HeightmapGenerators;
 namespace UI
 {
     public class NewMapCallbacks : MonoBehaviour
-    {
-        [SerializeField] private GameObject _MenuItemPrefab;
-        [SerializeField] private Transform _MenuItemSpawnParent;
-        
+    {     
         [SerializeField] private InputField _sizeXInput;
         [SerializeField] private InputField _sizeYInput;
         [SerializeField] private InputField _cellCountInput;
@@ -38,11 +35,7 @@ namespace UI
 
         private void CreateNewMenuItem(Heightmap heightmap, String name)
         {
-            var newItem = GameObject.Instantiate(_MenuItemPrefab);
-            newItem.transform.SetParent(_MenuItemSpawnParent);
-            newItem.name = name;
-
-            newItem.GetComponent<HeightmapBrowserItem>().Init(heightmap, name);
+            FindObjectOfType<HeightmapBrowser>().CreateNewItem(heightmap, name);
         }
         
         private void ParseInputFields()

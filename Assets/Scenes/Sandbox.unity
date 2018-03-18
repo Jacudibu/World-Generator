@@ -1162,7 +1162,7 @@ Prefab:
     - target: {fileID: 224375965258183116, guid: c5c810871bf7dc443a12aabda1bebea4,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 246.86
+      value: 243.86
       objectReference: {fileID: 0}
     - target: {fileID: 224375965258183116, guid: c5c810871bf7dc443a12aabda1bebea4,
         type: 2}
@@ -1208,6 +1208,25 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224459489534715110, guid: c5c810871bf7dc443a12aabda1bebea4,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 224459489534715110, guid: c5c810871bf7dc443a12aabda1bebea4,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 224459489534715110, guid: c5c810871bf7dc443a12aabda1bebea4,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302817296291048, guid: c5c810871bf7dc443a12aabda1bebea4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5c810871bf7dc443a12aabda1bebea4, type: 2}
@@ -1670,9 +1689,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3beaafab972447cd8f06b2b31d6cefaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MenuItemPrefab: {fileID: 1302817296291048, guid: c5c810871bf7dc443a12aabda1bebea4,
-    type: 2}
-  _MenuItemSpawnParent: {fileID: 1387466991}
   _sizeXInput: {fileID: 667999172}
   _sizeYInput: {fileID: 908376742}
   _cellCountInput: {fileID: 1339506613}
@@ -2087,8 +2103,9 @@ GameObject:
   - component: {fileID: 1228590624}
   - component: {fileID: 1228590623}
   - component: {fileID: 1228590622}
+  - component: {fileID: 1228590625}
   m_Layer: 5
-  m_Name: Map List
+  m_Name: Heightmap Browser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2178,6 +2195,20 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.ScrollRect+ScrollRectEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1228590625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1228590620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50190b4f0ce3482f83800bd3997b8205, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MenuItemPrefab: {fileID: 1302817296291048, guid: c5c810871bf7dc443a12aabda1bebea4,
+    type: 2}
+  _MenuItemSpawnParent: {fileID: 1387466991}
 --- !u!1 &1317981364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2253,8 +2284,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 264019024}
   m_HandleRect: {fileID: 264019023}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.79873747
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2612,6 +2643,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1387466991}
   - component: {fileID: 1387466992}
+  - component: {fileID: 1387466993}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -2636,7 +2668,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 800}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1387466992
 MonoBehaviour:
@@ -2660,6 +2692,19 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!114 &1387466993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1387466990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &1437821460
 GameObject:
   m_ObjectHideFlags: 0
