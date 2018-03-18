@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace WorldGeneration
+namespace WorldGeneration.HeightmapGenerators
 {
 	public static class DiamondSquare
 	{

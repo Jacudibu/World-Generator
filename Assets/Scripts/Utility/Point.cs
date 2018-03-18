@@ -1,4 +1,6 @@
-﻿namespace Utility
+﻿using UnityEngine;
+
+namespace Utility
 {
     public struct Point
     {
@@ -9,6 +11,14 @@
         {
             X = x;
             Y = y;
+        }
+
+        public float Distance(Point other)
+        {
+            float xDistance = X - other.X;
+            float yDistance = Y - other.Y;
+
+            return Mathf.Sqrt(xDistance * xDistance + yDistance * yDistance);
         }
     }
 }

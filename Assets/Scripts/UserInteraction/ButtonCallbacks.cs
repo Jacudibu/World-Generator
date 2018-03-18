@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using WorldGeneration;
+using WorldGeneration.HeightmapGenerators;
 
 namespace UserInteraction
 {
@@ -20,6 +21,13 @@ namespace UserInteraction
         public void GenerateHeightmap_DiamondSquare()
         {
             heightmap = DiamondSquare.Generate(Size);
+            ApplyTexture();
+            GenerateMesh();
+        }
+
+        public void GenerateHeightmap_CellNoise()
+        {
+            heightmap = CellNoise.Generate(Size, Size, 32);
             ApplyTexture();
             GenerateMesh();
         }
