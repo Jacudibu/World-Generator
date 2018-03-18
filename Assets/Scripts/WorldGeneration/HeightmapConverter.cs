@@ -28,6 +28,14 @@ namespace WorldGeneration
         
             return texture;
         }
+
+        public static Sprite ToSprite(Heightmap map)
+        {
+            var texture = ToTexture2D(map);
+            var rect = new Rect(0, 0, texture.width, texture.height);
+            return Sprite.Create(texture, rect, Vector2.one * 0.5f);
+        }
+        
         
         public static Mesh ToMesh(Heightmap heightmap)
         {

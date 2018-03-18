@@ -34,6 +34,7 @@ namespace WorldGeneration.HeightmapGenerators
 				_randomNoiseFactor *= _randomNoiseFalloff;
 			}
 
+			_map.Normalize();
 			return _map;
 		}
 
