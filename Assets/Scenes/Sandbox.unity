@@ -1360,7 +1360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Image: {fileID: 384993978}
   Size: 128
-  terrainMeshFilter: {fileID: 119902201}
+  _terrainMeshFilter: {fileID: 119902201}
 --- !u!1 &1227956066
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,8 +1,7 @@
-﻿using System.Linq.Expressions;
-using NUnit.Framework;
-using UnityEditor;
+﻿using NUnit.Framework;
+using WorldGeneration;
 
-namespace WorldGeneration.Tests
+namespace Tests
 {
 	public class HeightmapTests
 	{

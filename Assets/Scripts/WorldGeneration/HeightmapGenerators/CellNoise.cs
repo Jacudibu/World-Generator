@@ -12,7 +12,7 @@ namespace WorldGeneration.HeightmapGenerators
         private static float _falloff;
         private static Point[] _points;
         
-        public static Heightmap Generate(int height, int width, int cellAmount, float falloff = 2f)
+        public static Heightmap Generate(int height, int width, int cellAmount, float falloff = 1f)
         {
             _height = height;
             _width = width;

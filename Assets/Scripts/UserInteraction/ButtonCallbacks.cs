@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using WorldGeneration;
 using WorldGeneration.HeightmapGenerators;
@@ -10,46 +9,46 @@ namespace UserInteraction
     {
         public Image Image;
 
-        private Heightmap heightmap;
-        private Texture2D texture;
+        private Heightmap _heightmap;
+        private Texture2D _texture;
 
         public int Size = 128;
 
-        private Mesh terrainMesh;
+        private Mesh _terrainMesh;
         [SerializeField]
-        private MeshFilter terrainMeshFilter;
+        private MeshFilter _terrainMeshFilter;
 
         public void GenerateHeightmap_DiamondSquare()
         {
-            heightmap = DiamondSquare.Generate(Size);
+            _heightmap = DiamondSquare.Generate(Size);
             ApplyTexture();
             GenerateMesh();
         }
 
         public void GenerateHeightmap_CellNoise()
         {
-            heightmap = CellNoise.Generate(Size, Size, 32);
+            _heightmap = CellNoise.Generate(Size, Size, 32);
             ApplyTexture();
             GenerateMesh();
         }
 
         public void SmoothHeightmap()
         {
-            heightmap.Smooth(3);
+            _heightmap.Smooth(3);
             ApplyTexture();
             GenerateMesh();
         }
 
         public void NormalizeHeightmap()
         {
-            heightmap.Normalize();
+            _heightmap.Normalize();
             ApplyTexture();
             GenerateMesh();
         }
 
         public void InvertHeightmap()
         {
-            heightmap.Invert();
+            _heightmap.Invert();
             ApplyTexture();
             GenerateMesh();
         }
@@ -60,15 +59,15 @@ namespace UserInteraction
         
         private void GenerateMesh()
         {
-            terrainMesh = HeightmapConverter.ToMesh(heightmap);
-            terrainMeshFilter.mesh = terrainMesh;
+            _terrainMesh = HeightmapConverter.ToMesh(_heightmap);
+            _terrainMeshFilter.mesh = _terrainMesh;
         }
     
         private void ApplyTexture()
         {
-            texture = HeightmapConverter.ToTexture2D(heightmap);
-            var rect = new Rect(0, 0, texture.width, texture.height);
-            Image.sprite = Sprite.Create(texture, rect, Vector2.one * 0.5f);
+            _texture = HeightmapConverter.ToTexture2D(_heightmap);
+            var rect = new Rect(0, 0, _texture.width, _texture.height);
+            Image.sprite = Sprite.Create(_texture, rect, Vector2.one * 0.5f);
             Image.SetNativeSize();
         }
     }
