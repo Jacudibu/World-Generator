@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using WorldGeneration;
 using WorldGeneration.HeightmapGenerators;
 
-namespace UserInteraction
+namespace UI
 {
     public class ButtonCallbacks : MonoBehaviour
     {
