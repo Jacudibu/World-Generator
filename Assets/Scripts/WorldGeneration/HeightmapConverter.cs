@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using System.Net;
+using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 
 namespace WorldGeneration
@@ -41,6 +43,12 @@ namespace WorldGeneration
             return mesh;
         }
 
+        public static void ToFile(Heightmap heightmap, string path)
+        {
+            var texture = ToTexture2D(heightmap);
+            File.WriteAllBytes(path, texture.EncodeToPNG());
+        }
+        
         private static Vector3[] GenerateVertices(Heightmap heightmap)
         {
             var vertices = new Vector3[heightmap.Values.Length];

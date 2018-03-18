@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Windows.Forms;
+using UnityEngine;
 using UnityEngine.UI;
 using WorldGeneration;
 using WorldGeneration.HeightmapGenerators;
@@ -51,6 +52,10 @@ namespace UserInteraction
             heightmap.Invert();
             ApplyTexture();
             GenerateMesh();
+        }
+
+        public void SaveHeightmap()
+        {
         }
         
         private void GenerateMesh()

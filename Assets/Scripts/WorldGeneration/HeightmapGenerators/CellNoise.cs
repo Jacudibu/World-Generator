@@ -9,12 +9,14 @@ namespace WorldGeneration.HeightmapGenerators
     {
         private static int _height;
         private static int _width;
+        private static float _falloff;
         private static Point[] _points;
         
-        public static Heightmap Generate(int height, int width, int cellAmount)
+        public static Heightmap Generate(int height, int width, int cellAmount, float falloff = 2f)
         {
             _height = height;
             _width = width;
+            _falloff = falloff;
             GeneratePoints(cellAmount);
 
 
@@ -46,7 +48,9 @@ namespace WorldGeneration.HeightmapGenerators
             {
                 for (point.X = 0; point.X < _width; point.X++)
                 {
-                    map.SetAt(point.X, point.Y, GetDistanceToClosestPoint(point));
+                    float value = GetDistanceToClosestPoint(point);
+                    value = Mathf.Pow(value, _falloff);
+                    map.SetAt(point.X, point.Y, value);
                 }
             }
 
