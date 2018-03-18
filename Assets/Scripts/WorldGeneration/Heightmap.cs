@@ -60,6 +60,17 @@ namespace WorldGeneration
             IsNormalized = true;
         }
 
+        public void Invert()
+        {
+            float min = GetMin();
+            float max = GetMax();
+            
+            for (int i = 0; i < Values.Length; i++)
+            {
+                float current = Values[i];
+                Values[i] = max - current + min;
+            }
+        }
 
         public void Smooth(int weighting = 1)
         {
@@ -104,6 +115,36 @@ namespace WorldGeneration
         private bool IsWithinBounds(int x, int y)
         {
             return x >= 0 && x < Width && y >= 0 && y < Height;
+        }
+
+        private float GetMax()
+        {
+            float max = float.NegativeInfinity;
+
+            foreach (float value in Values)
+            {
+                if (value > max)
+                {
+                    max = value;
+                }
+            }
+
+            return max;
+        }
+        
+        private float GetMin()
+        {
+            float min = float.PositiveInfinity;
+
+            foreach (float value in Values)
+            {
+                if (value < min)
+                {
+                    min = value;
+                }
+            }
+
+            return min;
         }
     }
 }

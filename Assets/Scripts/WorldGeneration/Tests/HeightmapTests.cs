@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System.Linq.Expressions;
+using NUnit.Framework;
+using UnityEditor;
 
 namespace WorldGeneration.Tests
 {
@@ -46,6 +48,51 @@ namespace WorldGeneration.Tests
 			Assert.AreEqual(0, map.GetAt(0, 0), "Error at 0/0");
 			Assert.AreEqual(1, map.GetAt(3, 3), "Error at 3/3");
 			Assert.AreEqual(0.5, map.GetAt(2, 2), "Error at 2/2");
+		}
+
+		[Test]
+		public void TestInvertNormalizedMap()
+		{
+			Heightmap map = new Heightmap(4, 4);
+			map.SetAt(0, 0, 1);
+			map.SetAt(1, 1, 0);
+			
+			map.Invert();
+			
+			Assert.AreEqual(0, map.GetAt(0, 0), "Error at 0/0");
+			Assert.AreEqual(1, map.GetAt(1, 1), "Error at 1/1");
+		}
+
+		[Test]
+		public void TestInvertUnnormalizedMap()
+		{
+			Heightmap map = new Heightmap(4, 4);
+			map.SetAt(0, 0, 42);
+			map.SetAt(1, 1, -42);
+			map.SetAt(2, 2, 1);
+			
+			map.Invert();
+			
+			Assert.AreEqual(-42, map.GetAt(0, 0), "Error at 0/0");
+			Assert.AreEqual(42, map.GetAt(1, 1), "Error at 1/1");
+			Assert.AreEqual(-1, map.GetAt(2, 2), "Error at 2/2");
+		}
+
+		[Test]
+		public void TestInvertCompletelyNegativeMap()
+		{
+			Heightmap map = new Heightmap(2, 2);
+			map.SetAt(0, 0, -1);
+			map.SetAt(1, 0, -2);
+			map.SetAt(0, 1, -3);
+			map.SetAt(1, 1, -4);
+
+			map.Invert();
+
+			Assert.AreEqual(-4, map.GetAt(0, 0), "Error at 0/0");
+			Assert.AreEqual(-3, map.GetAt(1, 0), "Error at 1/0");
+			Assert.AreEqual(-2, map.GetAt(0, 1), "Error at 0/1");
+			Assert.AreEqual(-1, map.GetAt(1, 1), "Error at 1/1");
 		}
 
 		[Test]

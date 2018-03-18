@@ -4,7 +4,7 @@ using WorldGeneration;
 
 namespace UserInteraction
 {
-    public class VisualizeUI : MonoBehaviour
+    public class ButtonCallbacks : MonoBehaviour
     {
         public Image Image;
 
@@ -26,7 +26,7 @@ namespace UserInteraction
 
         public void SmoothHeightmap()
         {
-            heightmap.Smooth();
+            heightmap.Smooth(3);
             ApplyTexture();
             GenerateMesh();
         }
@@ -38,7 +38,14 @@ namespace UserInteraction
             GenerateMesh();
         }
 
-        public void GenerateMesh()
+        public void InvertHeightmap()
+        {
+            heightmap.Invert();
+            ApplyTexture();
+            GenerateMesh();
+        }
+        
+        private void GenerateMesh()
         {
             terrainMesh = HeightmapConverter.ToMesh(heightmap);
             terrainMeshFilter.mesh = terrainMesh;
