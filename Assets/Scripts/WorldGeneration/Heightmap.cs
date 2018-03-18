@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Utility;
 
 namespace WorldGeneration
 {
@@ -19,11 +20,21 @@ namespace WorldGeneration
             Values = new float[width * height];
         }
 
+        public void SetAt(Point point, float value)
+        {
+            SetAt(point.X, point.Y, value);
+        }
+
         public void SetAt(int x, int y, float value)
         {
             Values[x + y * Width] = value;
         }
 
+        public float GetAt(Point point)
+        {
+            return GetAt(point.X, point.Y);
+        }
+        
         public float GetAt(int x, int y)
         {
             return Values[x + y * Width];
