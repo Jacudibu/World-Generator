@@ -8,7 +8,7 @@ namespace UI
 {
     public class HeightmapBrowserItem : MonoBehaviour
     {
-        private Heightmap _heightmap;
+        public Heightmap Heightmap { get; private set; }
 
         [SerializeField] private Image _image;
         [SerializeField] private InputField _name;
@@ -19,7 +19,7 @@ namespace UI
         {
             // TODO: Add to List
             
-            _heightmap = map;
+            Heightmap = map;
             _name.text = name;
             UpdateSprite();
         }
@@ -58,13 +58,13 @@ namespace UI
 
         public void Button_Invert()
         {
-            _heightmap.Invert();
+            Heightmap.Invert();
             UpdateSprite();
         }
 
         public void Button_Smooth()
         {
-            _heightmap.Smooth();
+            Heightmap.Smooth();
             UpdateSprite();
         }
 
@@ -76,7 +76,7 @@ namespace UI
 
         private void UpdateSprite()
         {
-            _image.sprite = HeightmapConverter.ToSprite(_heightmap);
+            _image.sprite = HeightmapConverter.ToSprite(Heightmap);
         }
     }
 }

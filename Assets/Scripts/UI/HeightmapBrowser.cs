@@ -29,5 +29,12 @@ namespace UI
         {
             _items.Remove(item);
         }
+
+        public Heightmap CombineAll()
+        {
+            foreach (var item in _items)
+            {
+            }
+        }
     }
 }
