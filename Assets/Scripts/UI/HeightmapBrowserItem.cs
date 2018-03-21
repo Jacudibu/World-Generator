@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using WorldGeneration;
@@ -8,7 +7,8 @@ namespace UI
 {
     public class HeightmapBrowserItem : MonoBehaviour
     {
-        public Heightmap Heightmap { get; private set; }
+        private Heightmap _heightmapOriginal;
+        public Heightmap HeightmapModified { get; private set; }
 
         [SerializeField] private Image _image;
         [SerializeField] private InputField _name;
@@ -19,14 +19,15 @@ namespace UI
         {
             // TODO: Add to List
             
-            Heightmap = map;
-            _name.text = name;
+            _heightmapOriginal = map;
             UpdateSprite();
         }
         
         public void OnSliderValueChanged()
         {
             _strengthSliderInput.text = _strengthSlider.value.ToString("F");
+            
+            UpdateSprite();
         }
 
         public void OnInputValueChanged()
@@ -38,6 +39,8 @@ namespace UI
             {
                 _strengthSlider.value = value;
             }
+            
+            UpdateSprite();
         }
 
         public void OnInputValueEndEdit()
@@ -54,17 +57,19 @@ namespace UI
                 _strengthSlider.value = 1;
                 _strengthSliderInput.text = "1";
             }
+            
+            UpdateSprite();
         }
 
         public void Button_Invert()
         {
-            Heightmap.Invert();
+            _heightmapOriginal.Invert();
             UpdateSprite();
         }
 
         public void Button_Smooth()
         {
-            Heightmap.Smooth();
+            _heightmapOriginal.Smooth();
             UpdateSprite();
         }
 
@@ -76,7 +81,17 @@ namespace UI
 
         private void UpdateSprite()
         {
-            _image.sprite = HeightmapConverter.ToSprite(Heightmap);
+            UpdateClone();
+            _image.sprite = HeightmapConverter.ToSprite(HeightmapModified);
+        }
+
+        private void UpdateClone()
+        {
+            HeightmapModified = _heightmapOriginal.Clone() as Heightmap;
+            System.Diagnostics.Debug.Assert(HeightmapModified != null, "HeightmapModified != null");
+
+            Debug.Log(_strengthSlider.value);
+            HeightmapModified.AddToAllValues(_strengthSlider.value);
         }
     }
 }

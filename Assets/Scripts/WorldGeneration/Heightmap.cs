@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Utility;
 
 namespace WorldGeneration
 {
-    public class Heightmap
+    public class Heightmap : ICloneable
     {
 
         public readonly int Width;
@@ -96,7 +97,7 @@ namespace WorldGeneration
 
             Values = smoothedMap.Values;
         }
-
+        
         private void SmoothAt(Heightmap smoothedMap, int x, int y, int weighting)
         {
             float sum = 0;
@@ -121,6 +122,14 @@ namespace WorldGeneration
             
             float smoothedValue = sum / count;
             smoothedMap.SetAt(x, y, smoothedValue);            
+        }
+
+        public void AddToAllValues(float amount)
+        {
+            for (int i = 0; i < Values.Length; i++)
+            {
+                Values[i] = Mathf.Clamp01(Values[i] + amount);
+            }
         }
 
         private bool IsWithinBounds(int x, int y)
@@ -156,6 +165,16 @@ namespace WorldGeneration
             }
 
             return min;
+        }
+
+        public object Clone()
+        {
+            var clone = new Heightmap(Width, Height)
+                            {
+                                Values = Values.Clone() as float[]
+                            };
+
+            return clone;
         }
     }
 }
