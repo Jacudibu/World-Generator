@@ -176,5 +176,13 @@ namespace WorldGeneration
 
             return clone;
         }
+
+        public void Add(Heightmap other)
+        {
+            for (int i = 0; i < Values.Length; i++)
+            {
+                Values[i] += other.Values[i];
+            }
+        }
     }
 }

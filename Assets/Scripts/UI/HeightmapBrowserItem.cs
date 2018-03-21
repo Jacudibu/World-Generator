@@ -15,19 +15,21 @@ namespace UI
         [SerializeField] private Slider _strengthSlider;
         [SerializeField] private InputField _strengthSliderInput;
 
-        public void Init(Heightmap map, String name)
+        private HeightmapBrowser _associatedBrowser;
+
+        public void Init(Heightmap map, String name, HeightmapBrowser associatedBrowser)
         {
-            // TODO: Add to List
-            
+            _associatedBrowser = associatedBrowser;
             _heightmapOriginal = map;
-            UpdateSprite();
+            
+            UpdateHeightmap();
         }
         
         public void OnSliderValueChanged()
         {
             _strengthSliderInput.text = _strengthSlider.value.ToString("F");
-            
-            UpdateSprite();
+
+            UpdateHeightmap();
         }
 
         public void OnInputValueChanged()
@@ -40,7 +42,7 @@ namespace UI
                 _strengthSlider.value = value;
             }
             
-            UpdateSprite();
+            UpdateHeightmap();
         }
 
         public void OnInputValueEndEdit()
@@ -57,20 +59,20 @@ namespace UI
                 _strengthSlider.value = 1;
                 _strengthSliderInput.text = "1";
             }
-            
-            UpdateSprite();
+
+            UpdateHeightmap();
         }
 
         public void Button_Invert()
         {
             _heightmapOriginal.Invert();
-            UpdateSprite();
+            UpdateHeightmap();
         }
 
         public void Button_Smooth()
         {
             _heightmapOriginal.Smooth();
-            UpdateSprite();
+            UpdateHeightmap();
         }
 
         public void Button_Remove()
@@ -79,6 +81,13 @@ namespace UI
             Destroy(gameObject);
         }
 
+        private void UpdateHeightmap()
+        {
+            UpdateClone();
+            UpdateSprite();
+            _associatedBrowser.UpdateVisualization();
+        }
+        
         private void UpdateSprite()
         {
             UpdateClone();

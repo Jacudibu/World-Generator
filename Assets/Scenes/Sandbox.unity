@@ -1984,7 +1984,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1216081774}
+      - m_Target: {fileID: 0}
         m_MethodName: GenerateHeightmap_CellNoise
         m_Mode: 1
         m_Arguments:
@@ -2378,7 +2378,6 @@ GameObject:
   - component: {fileID: 1216081772}
   - component: {fileID: 1216081771}
   - component: {fileID: 1216081770}
-  - component: {fileID: 1216081774}
   m_Layer: 5
   m_Name: WorldGen UI
   m_TagString: Untagged
@@ -2464,20 +2463,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1216081774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1216081769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da30735b8aa5ca541aa2045541a6169d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Image: {fileID: 384993978}
-  Size: 128
-  _terrainMeshFilter: {fileID: 119902201}
 --- !u!1 &1228590620
 GameObject:
   m_ObjectHideFlags: 0
@@ -2592,9 +2577,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50190b4f0ce3482f83800bd3997b8205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MenuItemPrefab: {fileID: 1302817296291048, guid: c5c810871bf7dc443a12aabda1bebea4,
+  _menuItemPrefab: {fileID: 1302817296291048, guid: c5c810871bf7dc443a12aabda1bebea4,
     type: 2}
-  _MenuItemSpawnParent: {fileID: 1387466991}
+  _menuItemSpawnParent: {fileID: 1387466991}
+  _texture: {fileID: 0}
+  _image: {fileID: 384993978}
+  _terrainMeshFilter: {fileID: 119902201}
 --- !u!1 &1254863664
 GameObject:
   m_ObjectHideFlags: 0
