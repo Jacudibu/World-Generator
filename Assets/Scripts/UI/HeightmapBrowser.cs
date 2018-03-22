@@ -16,7 +16,7 @@ namespace UI
         
         private readonly List<HeightmapBrowserItem> _items = new List<HeightmapBrowserItem>();
 
-        public void CreateNewItem(Heightmap heightmap, String name)
+        public void CreateNewItem(Heightmap heightmap, string name)
         {
             var newItem = GameObject.Instantiate(_menuItemPrefab);
             newItem.transform.SetParent(_menuItemSpawnParent);
@@ -49,7 +49,8 @@ namespace UI
                 return null;
             }
             
-            var result = _items[0].HeightmapModified;
+            var result = _items[0].HeightmapModified.Clone() as Heightmap;
+            System.Diagnostics.Debug.Assert(result != null, "result != null");
 
             for (int i = 1; i < _items.Count; i++)
             {
@@ -67,6 +68,7 @@ namespace UI
     
         private void ApplyTexture(Heightmap heightmap)
         {
+            heightmap.Normalize();
             _texture = HeightmapConverter.ToTexture2D(heightmap);
             var rect = new Rect(0, 0, _texture.width, _texture.height);
             _image.sprite = Sprite.Create(_texture, rect, Vector2.one * 0.5f);
