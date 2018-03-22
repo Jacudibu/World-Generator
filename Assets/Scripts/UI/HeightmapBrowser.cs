@@ -32,6 +32,7 @@ namespace UI
         public void RemoveItem(HeightmapBrowserItem item)
         {
             _items.Remove(item);
+            UpdateVisualization();
         }
 
         public void UpdateVisualization()

@@ -35,7 +35,8 @@ namespace WorldGeneration.HeightmapGenerators
 			}
 
 			_map.Normalize();
-			return _map;
+			// reduce size by one again
+			return TrimByOne(_map);
 		}
 
 		private static void InitializeArray()
@@ -136,6 +137,20 @@ namespace WorldGeneration.HeightmapGenerators
 			
 			_map.SetAt(x, y, squareSum * factor + GetRandomValue());
 				
+		}
+
+		private static Heightmap TrimByOne(Heightmap heightmap)
+		{
+			var result = new Heightmap(heightmap.Width - 1, heightmap.Height - 1);
+			for (int y = 0; y < result.Height; y++)
+			{
+				for (int x = 0; x < result.Width; x++)
+				{
+					result.SetAt(x, y, heightmap.GetAt(x, y));
+				}
+			}
+
+			return result;
 		}
 
 		private static float GetRandomValue()

@@ -77,7 +77,7 @@ namespace UI
 
         public void Button_Remove()
         {
-            // TODO: Remove from list
+            _associatedBrowser.RemoveItem(this);
             Destroy(gameObject);
         }
 
