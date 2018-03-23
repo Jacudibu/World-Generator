@@ -134,9 +134,8 @@ namespace UI
         private void UpdateClone()
         {
             HeightmapModified = _heightmapOriginal.Clone() as Heightmap;
-            System.Diagnostics.Debug.Assert(HeightmapModified != null, "HeightmapModified != null");
+            System.Diagnostics.Debug.Assert(HeightmapModified != null, "HeightmapModified == null in UpdateClone");
 
-            Debug.Log(_strengthSlider.value);
             HeightmapModified.AddToAllValues(_strengthSlider.value);
         }
     }

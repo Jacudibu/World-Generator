@@ -46,7 +46,7 @@ namespace UI
         {
             if (_items.Count == 0)
             {
-                return null;
+                return new Heightmap(2, 2);
             }
             
             var result = new Heightmap(_items[0].HeightmapModified.Width, _items[0].HeightmapModified.Height);
