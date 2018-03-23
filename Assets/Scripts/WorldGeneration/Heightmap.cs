@@ -192,5 +192,35 @@ namespace WorldGeneration
                 Values[i] -= other.Values[i];
             }
         }
+
+        public void RotateClockwise()
+        {
+            var original = Clone() as Heightmap;
+            System.Diagnostics.Debug.Assert(original != null);
+
+            for (int x = 0; x < Height; x++)
+            {
+                for (int y = 0; y < Width; y++)
+                {
+                    SetAt(x, y, original.GetAt(y, Height - x - 1));
+                }
+            }
+        }
+
+        public void RotateCounterClockwise()
+        {
+            var original = Clone() as Heightmap;
+            System.Diagnostics.Debug.Assert(original != null);
+
+            for (int x = 0; x < Height; x++)
+            {
+                for (int y = 0; y < Width; y++)
+                {
+                    SetAt(x, y, original.GetAt(Width - y - 1, x));
+                }
+            }
+        }
+        
+        
     }
 }

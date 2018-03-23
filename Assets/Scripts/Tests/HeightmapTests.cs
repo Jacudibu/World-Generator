@@ -8,7 +8,7 @@ namespace Tests
 		[Test]
 		public void TestSetAt() 
 		{
-			Heightmap map = new Heightmap(4, 4);
+			var map = new Heightmap(4, 4);
 			
 			map.SetAt(0, 0, 42);
 			Assert.AreEqual(42, map.Values[0], "Error at 0/0");
@@ -23,7 +23,7 @@ namespace Tests
 		[Test]
 		public void TestGetAt()
 		{
-			Heightmap map = new Heightmap(4, 4);
+			var map = new Heightmap(4, 4);
 			map.SetAt(0, 0, 42);
 			Assert.AreEqual(map.GetAt(0, 0), 42, "Error at 0/0");
 			
@@ -37,7 +37,7 @@ namespace Tests
 		[Test]
 		public void TestNormalize()
 		{
-			Heightmap map = new Heightmap(4, 4);
+			var map = new Heightmap(4, 4);
 			map.SetAt(0, 0, -42);
 			map.SetAt(3, 3, 42);
 			map.SetAt(2, 2, 0);
@@ -52,7 +52,7 @@ namespace Tests
 		[Test]
 		public void TestInvertNormalizedMap()
 		{
-			Heightmap map = new Heightmap(4, 4);
+			var map = new Heightmap(4, 4);
 			map.SetAt(0, 0, 1);
 			map.SetAt(1, 1, 0);
 			
@@ -65,7 +65,7 @@ namespace Tests
 		[Test]
 		public void TestInvertUnnormalizedMap()
 		{
-			Heightmap map = new Heightmap(4, 4);
+			var map = new Heightmap(4, 4);
 			map.SetAt(0, 0, 42);
 			map.SetAt(1, 1, -42);
 			map.SetAt(2, 2, 1);
@@ -80,7 +80,7 @@ namespace Tests
 		[Test]
 		public void TestInvertCompletelyNegativeMap()
 		{
-			Heightmap map = new Heightmap(2, 2);
+			var map = new Heightmap(2, 2);
 			map.SetAt(0, 0, -1);
 			map.SetAt(1, 0, -2);
 			map.SetAt(0, 1, -3);
@@ -97,7 +97,7 @@ namespace Tests
 		[Test]
 		public void TestSmooth()
 		{
-			Heightmap map = new Heightmap(4, 4);
+			var map = new Heightmap(4, 4);
 			map.SetAt(0, 0, 0);
 			map.SetAt(1, 0, 1);
 			map.SetAt(0, 1, 1);
@@ -112,7 +112,7 @@ namespace Tests
 		[Test]
 		public void TestSmoothWithWeighting()
 		{
-			Heightmap map = new Heightmap(4, 4);
+			var map = new Heightmap(4, 4);
 			map.SetAt(0, 0, 0);
 			map.SetAt(1, 0, 1);
 			map.SetAt(0, 1, 1);
@@ -122,6 +122,46 @@ namespace Tests
 			Assert.AreEqual(3f / 7f, map.GetAt(1, 0), "Error at 1/0");
 			Assert.AreEqual(3f / 7f, map.GetAt(0, 1), "Error at 0/1");
 			Assert.AreEqual(2f / 10f, map.GetAt(1, 1), "Error at 1/1");
+		}
+
+		[Test]
+		public void TestRotateClockwise()
+		{
+			var map = new Heightmap(2, 2);
+			map.SetAt(0, 0, 0);
+			map.SetAt(1, 0, 1);
+			map.SetAt(0, 1, 2);
+			map.SetAt(1, 1, 3);
+
+			map.RotateClockwise();
+			
+			// 0 1 --> 2 0
+			// 2 3     3 1
+			
+			Assert.AreEqual(2, map.GetAt(0, 0), "Error at 0/0");
+			Assert.AreEqual(0, map.GetAt(1, 0), "Error at 1/0");
+			Assert.AreEqual(3, map.GetAt(0, 1), "Error at 0/1");
+			Assert.AreEqual(1, map.GetAt(1, 1), "Error at 1/1");
+		}
+		
+		[Test]
+		public void TestRotateCounterClockwise()
+		{
+			var map = new Heightmap(2, 2);
+			map.SetAt(0, 0, 0);
+			map.SetAt(1, 0, 1);
+			map.SetAt(0, 1, 2);
+			map.SetAt(1, 1, 3);
+
+			map.RotateCounterClockwise();
+			
+			// 0 1 --> 1 3
+			// 2 3     0 2
+			
+			Assert.AreEqual(1, map.GetAt(0, 0), "Error at 0/0");
+			Assert.AreEqual(3, map.GetAt(1, 0), "Error at 1/0");
+			Assert.AreEqual(0, map.GetAt(0, 1), "Error at 0/1");
+			Assert.AreEqual(2, map.GetAt(1, 1), "Error at 1/1");
 		}
 	}
 }

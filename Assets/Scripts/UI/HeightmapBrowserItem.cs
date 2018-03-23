@@ -86,6 +86,18 @@ namespace UI
             Destroy(gameObject);
         }
 
+        public void Button_RotateClockwise()
+        {
+            _heightmapOriginal.RotateClockwise();
+            UpdateHeightmap();
+        }
+
+        public void Button_RotateCounterClockwise()
+        {
+            _heightmapOriginal.RotateCounterClockwise();
+            UpdateHeightmap();
+        }
+        
         public void Button_Smooth()
         {
             _heightmapOriginal.Smooth();

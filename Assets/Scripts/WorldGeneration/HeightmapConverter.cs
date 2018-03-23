@@ -19,7 +19,7 @@ namespace WorldGeneration
                 for (int x = 0; x < heightmap.Width; x++)
                 {
                     float value = heightmap.GetAt(x, y);
-                    texture.SetPixel(x, y, new Color(value, value, value));
+                    texture.SetPixel(x, heightmap.Height - y - 1, new Color(value, value, value));
                 }
             }
 
