@@ -1429,7 +1429,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "<\xF8>"
+  m_Text: <o>
 --- !u!114 &114583916648005136
 MonoBehaviour:
   m_ObjectHideFlags: 1

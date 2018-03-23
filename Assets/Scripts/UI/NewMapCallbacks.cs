@@ -19,6 +19,7 @@ namespace UI
         [SerializeField] private InputField _cellNoiseInputSizeX;
         [SerializeField] private InputField _cellNoiseInputSizeY;
         [SerializeField] private InputField _cellNoiseInputCellCount;
+        [SerializeField] private InputField _cellNoiseInputFalloff;
 
         private int _diamondSquareSize;
         private float _diamondSquareNoiseFactor;
@@ -27,6 +28,7 @@ namespace UI
         private int _cellNoiseSizeX;
         private int _cellNoiseSizeY;
         private int _cellNoiseCellCount;
+        private float _cellNoiseFalloff;
 
         private int _diamondMapsGenerated = 0;
         private int _cellMapsGenerated = 0;
@@ -53,11 +55,11 @@ namespace UI
         public void Button_GenerateHeightmap_CellNoise()
         {
             ParseInputFields();
-            var heightmap = CellNoise.Generate(_cellNoiseSizeX, _cellNoiseSizeY, _cellNoiseCellCount);
+            var heightmap = CellNoise.Generate(_cellNoiseSizeX, _cellNoiseSizeY, _cellNoiseCellCount, _cellNoiseFalloff);
             CreateNewMenuItem(heightmap, "CellNoise_" + ++_cellMapsGenerated);
         }
 
-        private void CreateNewMenuItem(Heightmap heightmap, String name)
+        private void CreateNewMenuItem(Heightmap heightmap, string name)
         {
             FindObjectOfType<HeightmapBrowser>().CreateNewItem(heightmap, name);
         }
@@ -71,6 +73,7 @@ namespace UI
             _cellNoiseSizeX = int.Parse(_cellNoiseInputSizeX.text);
             _cellNoiseSizeY = int.Parse(_cellNoiseInputSizeY.text);
             _cellNoiseCellCount = int.Parse(_cellNoiseInputCellCount.text);
+            _cellNoiseFalloff = float.Parse(_cellNoiseInputFalloff.text);
         }
 
         private void CloseAllSubWindwos()
