@@ -41,20 +41,31 @@ namespace UI
             GenerateMesh(heightmap);
             ApplyTexture(heightmap);
         }
-        
-        public Heightmap CombineAll()
+
+        private Heightmap CombineAll()
         {
             if (_items.Count == 0)
             {
                 return null;
             }
             
-            var result = _items[0].HeightmapModified.Clone() as Heightmap;
-            System.Diagnostics.Debug.Assert(result != null, "result != null");
+            var result = new Heightmap(_items[0].HeightmapModified.Width, _items[0].HeightmapModified.Height);
 
-            for (int i = 1; i < _items.Count; i++)
+            foreach (var heightmap in _items)
             {
-                result.Add(_items[i].HeightmapModified);
+                if (!heightmap.IsVisible)
+                {
+                    continue;
+                }
+
+                if (heightmap.CurrentMode == HeightmapBrowserItem.Mode.Add)
+                {
+                    result.Add(heightmap.HeightmapModified);
+                }
+                else
+                {
+                    result.Substract(heightmap.HeightmapModified);
+                }
             }
 
             return result;

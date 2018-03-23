@@ -184,5 +184,13 @@ namespace WorldGeneration
                 Values[i] += other.Values[i];
             }
         }
+
+        public void Substract(Heightmap other)
+        {
+            for (int i = 0; i < Values.Length; i++)
+            {
+                Values[i] -= other.Values[i];
+            }
+        }
     }
 }

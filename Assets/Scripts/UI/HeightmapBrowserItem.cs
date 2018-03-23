@@ -10,18 +10,29 @@ namespace UI
         private Heightmap _heightmapOriginal;
         public Heightmap HeightmapModified { get; private set; }
 
+        public bool IsVisible { get; private set; }
+        
         [SerializeField] private Image _image;
         [SerializeField] private InputField _name;
         [SerializeField] private Slider _strengthSlider;
         [SerializeField] private InputField _strengthSliderInput;
+        [SerializeField] private Text _toggleVisibilityButtonText;
 
         private HeightmapBrowser _associatedBrowser;
+
+        public enum Mode
+        {
+            Add = 0,
+            Substract = 1,
+        }
+        public Mode CurrentMode { get; private set; }
 
         public void Init(Heightmap map, String name, HeightmapBrowser associatedBrowser)
         {
             _associatedBrowser = associatedBrowser;
             _heightmapOriginal = map;
-            
+
+            IsVisible = true;
             UpdateHeightmap();
         }
         
@@ -62,11 +73,17 @@ namespace UI
 
             UpdateHeightmap();
         }
-
+        
         public void Button_Invert()
         {
             _heightmapOriginal.Invert();
             UpdateHeightmap();
+        }
+        
+        public void Button_Remove()
+        {
+            _associatedBrowser.RemoveItem(this);
+            Destroy(gameObject);
         }
 
         public void Button_Smooth()
@@ -74,13 +91,21 @@ namespace UI
             _heightmapOriginal.Smooth();
             UpdateHeightmap();
         }
-
-        public void Button_Remove()
+       
+        public void Button_ToggleVisibility()
         {
-            _associatedBrowser.RemoveItem(this);
-            Destroy(gameObject);
+            IsVisible = !IsVisible;
+            _associatedBrowser.UpdateVisualization();
+
+            _toggleVisibilityButtonText.text = IsVisible ? "<o>" : "<ø>";
         }
 
+        public void Dropdown_ToggleMode(int value)
+        {
+            CurrentMode = (Mode) value;
+            _associatedBrowser.UpdateVisualization();
+        }
+        
         private void UpdateHeightmap()
         {
             UpdateClone();
